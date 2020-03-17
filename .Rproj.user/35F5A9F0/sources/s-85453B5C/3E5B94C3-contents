@@ -1,0 +1,16 @@
+---
+title: "Tulisan pertama di tengah Corona"
+author: "Masdian"
+date: '2020-03-17'
+highlight: no
+lastmod: '2020-03-17T11:01:09+07:00'
+layout: post
+slug: tulisan-pertama-di-tengah-corona
+tags: []
+categories: []
+type: post
+---
+
+**Insert Lead paragraph here.**
+
+Setelah kurang lebih satu bulan belajar tentang **bookdown**, terbersit dalam hati untuk mencoba belajar bagaimana membuat blog menggunakan R, Rstudio, dan `blogdown`. Ternyata membuat blog menggunakan R Studio sangat mudah. Langkah-langkahnya bisa dilihat [di sini](https://bookdown.org/yihui/blogdown/). Bagi yang berminat untuk belajar, silakan pelajari buku [blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/). Buku tersebut tersedia secara gratis.

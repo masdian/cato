@@ -1,0 +1,81 @@
+---
+title: "working SMARTER, not HARDER"
+author: "masdian"
+date: '2020-03-18'
+highlight: no
+lastmod: '2020-03-18T13:19:37+07:00'
+layout: post
+slug: working-smarter-not-harder
+tags: []
+categories: []
+type: post
+---
+
+
+
+<p><strong><code>count()</code></strong></p>
+<p>Pengguna <strong>R</strong> saat ini tentu sangat bersyukur karena dimanjakan oleh banyak sekali kemudahan ketika menggunakan <strong>R</strong> untuk berbagai keperluan. Salah satu kemudahan yang didapat oleh pengguna <strong>R</strong> adalah kemudahan dalam melakukan manipulasi data dengan menggunakan <em>package</em> <code>tidyverse</code>. Bagi yang terbiasa menggunakan <strong>SQL</strong>, tentu tidak akan kesulitan dalam melakukan manipulasi data dengan <code>tidyverse</code>. Tulisan kali ini akan mengulas sedikit tentang manipulasi data menggunakan <strong>R</strong>.</p>
+<p>Data yang akan digunakan adalah data penghasilan (<em>income</em>) yang diambil dari database <a href="https://www.census.gov/en.html">Biro Sensus Amerika Serikat tahun 1994</a> oleh Ronny Kohavi dan Barry Becker (Data Mining and Visualization, Silicon Graphics). Data tersebut bisa diunduh <a href="https://business-science.us17.list-manage.com/track/click?u=cc36813ecec32f8e7b5088961&amp;id=afd7cd4cfe&amp;e=f55c4a6ff8">di sini</a>.</p>
+<p>Data hasil unduhan berupa file csv. Data tersebut bisa dibuka menggunakan sintaks berikut</p>
+<pre class="r"><code>income &lt;- read.csv(&quot;income-1.csv&quot;)</code></pre>
+<p>Package yang akan digunakan adalah <code>tidyverse</code> dan <code>broom</code>.</p>
+<pre class="r"><code>library(tidyverse)
+library(broom)</code></pre>
+<p>Sintaks berikut akan membuat tabel baru yang berisi peubah (<em>varable</em>) <code>gender</code>, <code>country</code>, dan agregat <code>hours_per_week</code> yang diberi nama <code>total_hours</code>. Kemudian data diurutkan secara menurun (<em>descending</em>) berdasarkan <code>total_hours</code>.</p>
+<pre class="r"><code>income %&gt;%
+  group_by(gender, country) %&gt;%
+  summarize(total_hours = sum(hours_per_week)) %&gt;%
+  arrange(desc(total_hours))</code></pre>
+<pre><code>## Warning: Factor `country` contains implicit NA, consider using
+## `forcats::fct_explicit_na`</code></pre>
+<pre><code>## # A tibble: 83 x 3
+## # Groups:   gender [2]
+##    gender country       total_hours
+##    &lt;fct&gt;  &lt;fct&gt;               &lt;int&gt;
+##  1 Male   United States      828148
+##  2 Female United States      351713
+##  3 Male   Mexico              20577
+##  4 Male   &lt;NA&gt;                18094
+##  5 Female &lt;NA&gt;                 6108
+##  6 Female Mexico               5362
+##  7 Male   Philippines          5053
+##  8 Male   India                3760
+##  9 Male   Germany              3487
+## 10 Male   Canada               3360
+## # ... with 73 more rows</code></pre>
+<p>Karena terdapat <code>NA</code> pada peubah <code>country</code>, maka <strong>R</strong> menampilkan pesan kesalahan (<em>error</em>) sekaligus saran perbaikannya. Berikut adalah sintaks untuk mengatasi masalah tersebut.</p>
+<pre class="r"><code>income$country &lt;- fct_explicit_na(income$country)</code></pre>
+<p>Setelah dilakukan perbaikan, maka tidak ada lagi pesan kesalahan dan tampilan tabel baru tersebut adalah sebagai berikut.</p>
+<pre><code>## # A tibble: 83 x 3
+## # Groups:   gender [2]
+##    gender country       total_hours
+##    &lt;fct&gt;  &lt;fct&gt;               &lt;int&gt;
+##  1 Male   United States      828148
+##  2 Female United States      351713
+##  3 Male   Mexico              20577
+##  4 Male   (Missing)           18094
+##  5 Female (Missing)            6108
+##  6 Female Mexico               5362
+##  7 Male   Philippines          5053
+##  8 Male   India                3760
+##  9 Male   Germany              3487
+## 10 Male   Canada               3360
+## # ... with 73 more rows</code></pre>
+<p>Ternyata, tabel yang sama bisa dibuat hanya dengan menggunakan sebaris sintaks menggunakan fungsi <code>count</code>. Berikut adalah sintaksnya.</p>
+<pre class="r"><code>income %&gt;%
+  count(gender, country, wt = hours_per_week, name = &quot;total_hours&quot;, sort = T)</code></pre>
+<pre><code>## # A tibble: 83 x 3
+##    gender country       total_hours
+##    &lt;fct&gt;  &lt;fct&gt;               &lt;int&gt;
+##  1 Male   United States      828148
+##  2 Female United States      351713
+##  3 Male   Mexico              20577
+##  4 Male   (Missing)           18094
+##  5 Female (Missing)            6108
+##  6 Female Mexico               5362
+##  7 Male   Philippines          5053
+##  8 Male   India                3760
+##  9 Male   Germany              3487
+## 10 Male   Canada               3360
+## # ... with 73 more rows</code></pre>
+<p>Bagaimana? Mudah bukan?</p>

@@ -1,5 +1,5 @@
 ## Basic Configuration
-baseurl = "/"
+baseurl = "https://cato.netlify.com/"
 languageCode = "en"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 title = "untitled"
@@ -19,7 +19,7 @@ theme = "hyde-hyde"
     author = "Mas Dian"
     title = "Title"
     # description = "..."
-    authorimage = "/img/hugo.png"
+    authorimage = "/img/cato.jpg"
     dateformat = "Jan 2, 2006"
 
     # sidebar, copyright & license

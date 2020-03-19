@@ -4,12 +4,14 @@ author: "masdian"
 date: '2020-03-18'
 highlight: no
 lastmod: '2020-03-18T13:19:37+07:00'
-layout: post
 slug: working-smarter-not-harder
 tags: []
 categories: []
-type: post
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 **`count()`**
 
@@ -23,14 +25,14 @@ Data hasil unduhan berupa file csv. Data tersebut bisa dibuka menggunakan sintak
 income <- read.csv("income-1.csv")
 ```
 
-Package yang akan digunakan adalah `tidyverse` dan `broom`. 
+*Package* yang akan digunakan adalah `tidyverse` dan `broom`. 
 
 ```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(broom)
 ```
 
-Sintaks berikut akan membuat tabel baru yang berisi peubah (*varable*) `gender`, `country`, dan agregat `hours_per_week` yang diberi nama `total_hours`. Kemudian data diurutkan secara menurun (*descending*) berdasarkan `total_hours`.
+Sintaks berikut akan membuat tabel baru yang berisi peubah (*variable*) `gender`, `country`, dan agregat `hours_per_week` yang diberi nama `total_hours`. Kemudian data diurutkan secara menurun (*descending*) berdasarkan `total_hours`.
 
 ```{r}
 income %>%

@@ -4,11 +4,9 @@ author: "masdian"
 date: '2020-03-18'
 highlight: no
 lastmod: '2020-03-18T13:19:37+07:00'
-layout: post
 slug: working-smarter-not-harder
 tags: []
 categories: []
-type: post
 ---
 
 
@@ -18,10 +16,10 @@ type: post
 <p>Data yang akan digunakan adalah data penghasilan (<em>income</em>) yang diambil dari database <a href="https://www.census.gov/en.html">Biro Sensus Amerika Serikat tahun 1994</a> oleh Ronny Kohavi dan Barry Becker (Data Mining and Visualization, Silicon Graphics). Data tersebut bisa diunduh <a href="https://business-science.us17.list-manage.com/track/click?u=cc36813ecec32f8e7b5088961&amp;id=afd7cd4cfe&amp;e=f55c4a6ff8">di sini</a>.</p>
 <p>Data hasil unduhan berupa file csv. Data tersebut bisa dibuka menggunakan sintaks berikut</p>
 <pre class="r"><code>income &lt;- read.csv(&quot;income-1.csv&quot;)</code></pre>
-<p>Package yang akan digunakan adalah <code>tidyverse</code> dan <code>broom</code>.</p>
+<p><em>Package</em> yang akan digunakan adalah <code>tidyverse</code> dan <code>broom</code>.</p>
 <pre class="r"><code>library(tidyverse)
 library(broom)</code></pre>
-<p>Sintaks berikut akan membuat tabel baru yang berisi peubah (<em>varable</em>) <code>gender</code>, <code>country</code>, dan agregat <code>hours_per_week</code> yang diberi nama <code>total_hours</code>. Kemudian data diurutkan secara menurun (<em>descending</em>) berdasarkan <code>total_hours</code>.</p>
+<p>Sintaks berikut akan membuat tabel baru yang berisi peubah (<em>variable</em>) <code>gender</code>, <code>country</code>, dan agregat <code>hours_per_week</code> yang diberi nama <code>total_hours</code>. Kemudian data diurutkan secara menurun (<em>descending</em>) berdasarkan <code>total_hours</code>.</p>
 <pre class="r"><code>income %&gt;%
   group_by(gender, country) %&gt;%
   summarize(total_hours = sum(hours_per_week)) %&gt;%
